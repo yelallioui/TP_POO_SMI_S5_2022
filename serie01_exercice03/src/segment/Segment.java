@@ -1,6 +1,14 @@
 package segment;
 
 public class Segment {
+	// ------------
+	Point point1;
+	Point point2;
+	
+	
+	
+	// -------------
+	
 	// 1. a) 	Deux attributs privés de type double, extr1 et extr2, représentant les abscisses des extrémités d'un segment sur un axe ;
 	private double extr1;
 	private double extr2;
@@ -11,10 +19,19 @@ public class Segment {
 		extr2 = x2;
 	}
 	
+	public Segment (Point p1, Point p2) {
+		point1 = p1;
+		point2 = p2;
+	}
+	
 	// 1. c)	Une méthode publique retournant la longueur du segment ;
 	public double longueur () {
 		double distance = Math.abs(extr1 - extr2);
 		return distance;
+	}
+	
+	public double longueurSegment() {
+		return Math.sqrt(Math.pow((point1.getX()-point2.getX()), 2) + Math.pow((point1.getY()-point2.getY()), 2) + Math.pow((point1.getZ()-point2.getZ()), 2));
 	}
 	
 	// 1. d) Une méthode dont le prototype est : public boolean appartient(double x) indiquant si le point de coordonnée x appartient ou non au segment ;
@@ -23,6 +40,11 @@ public class Segment {
 			return true;
 		else 
 			return false;
+	}
+	
+	public boolean appartient (Point p) {
+		
+		return longueurSegment() == point1.longueur(p) + point2.longueur(p);
 	}
 
 	// 1. e) f) g) h) getter et setter :
@@ -47,5 +69,6 @@ public class Segment {
 	public String toString () {		
 		return "segment [" + Math.min(extr2, extr1) + ", " + Math.max(extr2, extr1) + "]";
 	}
+	
 	
 }
